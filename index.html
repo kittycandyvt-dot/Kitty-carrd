@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kitty — Becoming Her HQ</title>
 <meta name="description" content="Your new favorite cat-eared bestie — soft pastels, loud confidence, and a whole lot of pink." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href__="https://fonts.googleapis.com">
+<link rel="preconnect" href__="https://fonts.gstatic.com" crossorigin>
+<link href__="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --pink:#FB96BC; --green:#44634F; --warm:#FFF6F9; --white:#fff;
@@ -25,28 +25,40 @@
   .btn-ghost{background:rgba(255,255,255,.6);border:1.5px solid rgba(251,150,188,.5);color:var(--green);font-weight:700}
   .btn-ghost:hover{background:#fff}
   .pill{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .9rem;border-radius:999px;background:rgba(251,150,188,.2);color:var(--pink);font-weight:700;font-size:.8rem;font-family:'Quicksand',sans-serif}
-  section{position:relative;padding:4rem 0}
+  .badges{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .live{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .8rem;border-radius:999px;background:#e23b5a;color:#fff;font-weight:700;font-size:.75rem;font-family:'Quicksand',sans-serif}
+  .live .dot{width:.5rem;height:.5rem;border-radius:999px;background:#fff;animation:ping 1.4s infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}70%{box-shadow:0 0 0 .5rem rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+  .socials{display:flex;align-items:center;gap:.6rem;margin-top:1.25rem;flex-wrap:wrap}
+  .socials .lbl{font-size:.85rem;color:var(--muted);font-weight:600}
+  .socials a{width:2.25rem;height:2.25rem;border-radius:999px;background:rgba(251,150,188,.15);color:var(--pink);display:grid;place-items:center;text-decoration:none;font-size:.9rem;transition:background .2s,color .2s}
+  .socials a:hover{background:var(--pink);color:#fff}
+  section{position:relative;padding:5rem 0}
 
-  .hero{display:flex;align-items:center;background:linear-gradient(180deg,rgba(251,150,188,.4),rgba(251,150,188,.08),var(--warm))}
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(180deg,rgba(251,150,188,.4),rgba(251,150,188,.08),var(--warm))}
   .hero .grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;width:100%}
   @media(min-width:768px){.hero .grid{grid-template-columns:1.1fr .9fr}}
-  .hero h1{font-size:clamp(2.5rem,7vw,4.5rem);font-weight:700}
+  .hero h1{font-size:clamp(3rem,8vw,5rem);font-weight:700}
   .hero .name{background:linear-gradient(90deg,var(--pink),var(--pink),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero p{font-size:1.05rem;color:var(--muted);max-width:28rem;margin:1.25rem 0}
+  .hero p{font-size:1.1rem;color:var(--muted);max-width:28rem;margin:1.5rem 0}
   .hero .cta{display:flex;gap:1rem;flex-wrap:wrap}
   .char{border-radius:2rem;overflow:hidden;box-shadow:0 25px 60px rgba(251,150,188,.4);border:1px solid rgba(251,150,188,.3);transform:rotate(2deg);max-width:24rem;margin:0 auto;background:#000}
   .char img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center 30%}
   .badge{position:absolute;bottom:-1rem;right:-1rem;background:#fff;padding:.6rem 1rem;border-radius:1rem;box-shadow:0 8px 20px rgba(0,0,0,.1);font-weight:700;color:var(--pink);font-family:'Quicksand',sans-serif;font-size:.9rem}
   .char-wrap{position:relative}
 
+  /* MARQUEE */
   .marquee{background:var(--pink);padding:.85rem 0;overflow:hidden;white-space:nowrap}
   .marquee span{font-family:'Quicksand',sans-serif;font-weight:700;color:var(--white);display:inline-block;padding-right:1.5rem;font-size:1.1rem;animation:scroll 18s linear infinite}
   @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-  .head{text-align:center;margin-bottom:2.5rem}
+  /* SECTION HEAD */
+  .head{text-align:center;margin-bottom:3rem}
   .head h2{font-size:clamp(2rem,5vw,3rem);color:var(--green);font-weight:700}
   .head p{color:var(--muted);max-width:34rem;margin:1rem auto 0}
 
+  /* ABOUT */
   .about .grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
   @media(min-width:768px){.about .grid{grid-template-columns:1fr 1fr}}
   .about p{color:var(--muted);margin-bottom:1rem}
@@ -54,6 +66,7 @@
   .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
   .tag{padding:.4rem 1rem;border-radius:999px;background:rgba(251,150,188,.15);color:var(--pink);font-size:.85rem;font-weight:600}
 
+  /* WHAT I DO */
   .vibes{background:rgba(251,150,188,.08)}
   .vibe-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
   @media(min-width:560px){.vibe-grid{grid-template-columns:1fr 1fr}}
@@ -62,17 +75,20 @@
   .vibe h3{color:var(--green);font-size:1.25rem;margin-bottom:.5rem}
   .vibe p{color:var(--muted);font-size:.95rem}
 
+  /* GALLERY */
   .gal-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
   @media(min-width:560px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
   .gal{border-radius:1.5rem;overflow:hidden;background:#000;box-shadow:0 14px 30px rgba(251,150,188,.2);border:1px solid rgba(251,150,188,.2)}
   .gal img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;display:block}
   .gal p{text-align:center;padding:.75rem;color:var(--pink);font-weight:600;font-size:.9rem;background:#fff}
 
+  /* LOVENSE */
   .lovense{background:linear-gradient(135deg,rgba(251,150,188,.4),var(--warm),rgba(251,150,188,.2));border:1.5px solid rgba(251,150,188,.3);border-radius:2.5rem;padding:2.5rem;box-shadow:0 20px 50px rgba(251,150,188,.2)}
   .lovense h2{font-size:clamp(2rem,5vw,3rem);color:var(--green)}
   .lovense p{color:var(--muted);max-width:30rem;margin:1rem 0}
   .lovense .off{padding:.3rem .8rem;border-radius:999px;background:var(--green);color:var(--warm);font-weight:700;font-size:.85rem}
 
+  /* COMMISSIONS */
   .comms{display:grid;grid-template-columns:1fr;gap:1.25rem}
   @media(min-width:768px){.comms{grid-template-columns:repeat(4,1fr)}}
   .tier{background:#fff;border:1px solid rgba(251,150,188,.25);border-radius:1.5rem;padding:1.5rem;box-shadow:0 6px 16px rgba(0,0,0,.04);display:flex;flex-direction:column}
@@ -89,6 +105,7 @@
   .addon-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
   .chip{padding:.4rem 1rem;border-radius:999px;background:rgba(251,150,188,.2);color:var(--pink);font-size:.85rem;font-weight:600}
 
+  /* CONTACT */
   .contact{background:rgba(251,150,188,.08)}
   .contact-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
   @media(min-width:560px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
@@ -99,6 +116,7 @@
   .card .val{font-weight:600;margin:.75rem 0;word-break:break-all}
   .card a.btn{font-size:.9rem;padding:.6rem 1.2rem}
 
+  /* CTA */
   .cta-final{background:linear-gradient(135deg,rgba(251,150,188,.3),var(--warm),rgba(251,150,188,.2));border:1.5px solid rgba(251,150,188,.3);border-radius:2.5rem;padding:3rem;text-align:center;max-width:44rem;margin:0 auto}
   .cta-final h2{font-size:clamp(2rem,5vw,3rem);color:var(--green)}
   .cta-final p{color:var(--muted);max-width:24rem;margin:1rem auto}
@@ -107,15 +125,25 @@
 </head>
 <body>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="wrap grid">
       <div>
-        <span class="pill">VTuber · cozy chaos</span>
-        <h1 style="margin-top:1rem"><span class="name">Hi, I'm Kitty</span></h1>
+        <div class="badges">
+          <span class="live"><span class="dot"></span>LIVE</span>
+          <span class="pill">VTuber · cozy chaos</span>
+        </div>
+        <h1><span class="name">Hi, I'm Kitty</span></h1>
         <p>Your new favorite cat-eared bestie — soft pastels, loud confidence, and a whole lot of pink. Welcome to the coziest corner of the internet. 💕</p>
         <div class="cta">
-          <a class="btn btn-pink" href="#contact">Commission me →</a>
-          <a class="btn btn-ghost" href="#story">My story ↓</a>
+          <a class="btn btn-pink" href__="#contact">Commission me →</a>
+          <a class="btn btn-ghost" href__="#story">My story ↓</a>
+        </div>
+        <div class="socials">
+          <span class="lbl">find me on</span>
+          <a href__="https://twitch.tv/" target="_blank" rel="noreferrer">🎬</a>
+          <a href__="https://twitter.com/" target="_blank" rel="noreferrer">🐦</a>
+          <a href__="https://youtube.com/" target="_blank" rel="noreferrer">▶</a>
         </div>
       </div>
       <div class="char-wrap">
@@ -127,10 +155,12 @@
     </div>
   </section>
 
+  <!-- MARQUEE -->
   <div class="marquee">
     <span>cat ears ♡ pink everything ♡ cozy chaos ♡ becoming her ♡ your bestie ♡ cat ears ♡ pink everything ♡ cozy chaos ♡ becoming her ♡ your bestie ♡ </span>
   </div>
 
+  <!-- ABOUT -->
   <section class="about" id="story">
     <div class="wrap grid">
       <div>
@@ -150,9 +180,10 @@
     </div>
   </section>
 
+  <!-- WHAT I DO -->
   <section class="vibes">
     <div class="wrap">
-      <div class="head"><h2>what I do, bestie</h2></div>
+      <div class="head"><h2>what this kitty can do</h2></div>
       <div class="vibe-grid">
         <div class="vibe"><div class="ic">📸</div><h3>Content Creation</h3><p>Short-form that hits, long-form that heals — every clip a little glow-up.</p></div>
         <div class="vibe"><div class="ic">🎮</div><h3>Cozy Streams</h3><p>Low-stakes games, high-stakes vibes. Pull up a cushion and stay a while.</p></div>
@@ -162,6 +193,7 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
   <section>
     <div class="wrap">
       <div class="head"><h2>a little lookbook</h2></div>
@@ -173,18 +205,20 @@
     </div>
   </section>
 
+  <!-- LOVENSE -->
   <section>
     <div class="wrap">
       <div class="lovense">
         <span class="off">50% off</span>
         <h2 style="margin-top:1rem">my Lovense partnership 💕</h2>
         <p>Treat yourself (and maybe me 👀). I've teamed up with Lovense so my besties get <strong style="color:var(--pink)">50% off</strong> with my link — every order supports the kitty corner of the internet.</p>
-        <a class="btn btn-pink" href="https://lovense.com/p/KittyCandy" target="_blank" rel="noreferrer">Shop 50% off →</a>
+        <a class="btn btn-pink" href__="https://lovense.com/p/KittyCandy" target="_blank" rel="noreferrer">Shop 50% off →</a>
         <p style="font-size:.75rem;margin-top:1rem">Affiliate link — I may earn a commission at no extra cost to you.</p>
       </div>
     </div>
   </section>
 
+  <!-- COMMISSION SHEET -->
   <section>
     <div class="wrap">
       <div class="head">
@@ -205,12 +239,13 @@
             <span class="chip">NSFW / explicit · +$10</span><span class="chip">Rush (48h) · +$15</span><span class="chip">Commercial · +$20</span><span class="chip">Extra revision · +$5</span>
           </div>
         </div>
-        <a class="btn btn-pink" href="#contact">Book a slot →</a>
+        <a class="btn btn-pink" href__="#contact">Book a slot →</a>
       </div>
       <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:1.5rem">Prices in USD. Final quote confirmed in DMs based on script length and content. 💕</p>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="head">
@@ -220,18 +255,8 @@
       </div>
       <div class="contact-grid">
         <div class="card"><div class="ic">💬</div><h3>Discord</h3><div class="hint">best for quick comms</div><div class="val">kittycandyvt</div></div>
-        <div class="card"><div class="ic">✉️</div><h3>Email</h3><div class="hint">for longer briefs</div><div class="val">kittycandyvt@gmail.com</div><a class="btn btn-pink" href="mailto:kittycandyvt@gmail.com">Send email →</a></div>
-        <div class="card"><div class="ic">🐦</div><h3>Twitter / X</h3><div class="hint">spicy VA account</div><div class="val">@spicykittyxx</div><a class="btn btn-pink" href="https://x.com/spicykittyxx" target="_blank" rel="noreferrer">Open profile →</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="cta-final">
-        <h2>let's become her, together</h2>
-        <p>This is just the beginning. Slide into my DMs for voice acting, collabs, or just to say hi.</p>
-        <a class="btn btn-pink" href="#contact">Commission me →</a>
+        <div class="card"><div class="ic">✉️</div><h3>Email</h3><div class="hint">for longer briefs</div><div class="val">kittycandyvt@gmail.com</div><a class="btn btn-pink" href__="mailto:kittycandyvt@gmail.com">Send email →</a></div>
+        <div class="card"><div class="ic">🐦</div><h3>Twitter / X</h3><div class="hint">spicy VA account</div><div class="val">@spicykittyxx</div><a class="btn btn-pink" href__="https://x.com/spicykittyxx" target="_blank" rel="noreferrer">Open profile →</a></div>
       </div>
     </div>
   </section>
@@ -240,5 +265,3 @@
 
 </body>
 </html>
-
-
