@@ -1,333 +1,111 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Sparkles, Heart, Gamepad2, Camera, Star, ArrowRight, Cat, ArrowDown, Gift, Twitch, Twitter, Youtube } from "lucide-react";
-import { Image } from "@/components/ui/image";
-import SpicySpotlight from "@/components/SpicySpotlight";
-import FanslySpotlight from "@/components/FanslySpotlight";
-import VtuberCollabs from "@/components/VtuberCollabs";
-import TwitchSpotlight from "@/components/TwitchSpotlight";
-import CommissionSheet from "@/components/CommissionSheet";
-import ContactMe from "@/components/ContactMe";
-import BackToTop from "@/components/BackToTop";
-import DiscordServer from "@/components/DiscordServer";
-import MerchStore from "@/components/MerchStore";
-import ThemeToggle from "@/components/ThemeToggle";
-
-const CHAR_1 = "https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/f64393353_download.jpeg"; // pink kiss, cropped to drop the guy
-const CHAR_2 = "https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/394971f55_VI_VI_comm.jpg"; // wink portrait
-const CHAR_3 = "https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/97ea01347_IMG_1166.jpeg"; // snuggle — full image, no crop
-
-const DECOR = Array.from({ length: 26 }, (_, i) => ({
-  id: i,
-  left: Math.random() * 100,
-  top: Math.random() * 100,
-  delay: Math.random() * 5,
-  duration: 5 + Math.random() * 5,
-  size: 6 + Math.random() * 14,
-  Icon: i % 3 === 0 ? Heart : i % 3 === 1 ? Star : Sparkles,
-  color: i % 3 === 1 ? "text-accent" : "text-primary",
-}));
-
-const reveal = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 14 } },
-};
-
-const FACTS = ["cat-ear energy", "pink everything", "cozy gamer", "soft + bold", "always becoming her"];
-const VIBES = [
-  { icon: Camera, title: "Content Creation", text: "Short-form that hits, long-form that heals — every clip a little glow-up." },
-  { icon: Gamepad2, title: "Cozy Streams", text: "Low-stakes games, high-stakes vibes. Pull up a cushion and stay a while." },
-  { icon: Heart, title: "Brand Collabs", text: "Only partners I actually love. Confident, real, never begging." },
-  { icon: Cat, title: "The Community", text: "A soft corner of the internet where you can become her too." },
-];
-
-export default function Showcase() {
-  return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* dark mode toggle */}
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
-      {/* floating sparkles + hearts */}
-      <div className="pointer-events-none fixed inset-0 z-0">
-        {DECOR.map((s) => (
-          <motion.span
-            key={s.id}
-            className={`absolute ${s.color}`}
-            style={{ left: `${s.left}%`, top: `${s.top}%` }}
-            animate={{ y: [0, -18, 0], opacity: [0.15, 0.85, 0.15], scale: [0.8, 1.15, 0.8], rotate: [0, 12, 0] }}
-            transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <s.Icon style={{ width: s.size, height: s.size }} className={s.Icon === Heart ? "fill-primary" : ""} />
-          </motion.span>
-        ))}
-      </div>
-
-      {/* HERO */}
-      <section className="relative z-10 min-h-[88vh] flex items-center bg-gradient-to-b from-primary/40 via-secondary to-background">
-        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-8 items-center w-full">
-          <motion.div initial="hidden" animate="show" variants={reveal} className="space-y-6 text-center md:text-left">
-            <Image
-              src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/7bdefdc64_generated_b38be5b8.png"
-              alt="KittyCandyVT logo"
-              className="w-64 mx-auto md:mx-0"
-              fittingType="fit"
-            />
-            <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/90 text-white font-bold text-sm shadow-md">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-                </span>
-                LIVE
-              </span>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 text-primary font-medium text-sm">
-                <Sparkles className="w-4 h-4" /> VTuber · cozy chaos
-              </span>
-            </div>
-            <h1 className="font-display text-6xl sm:text-7xl font-bold leading-[0.95]">
-              <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">Hi, I'm Kitty</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-md mx-auto md:mx-0">
-              Your new favorite cat-eared bestie — soft pastels, loud confidence, and a whole lot of pink. Welcome to the coziest corner of the internet. 💕
-            </p>
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                <a href="#commissions" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
-                  Commission me <ArrowRight className="w-4 h-4" />
-                </a>
-                <a href="#contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/40 text-accent bg-card/60 font-semibold hover:bg-primary/10 transition-colors">
-                  Contact <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <a href="#story" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm border border-primary/30 text-accent/80 bg-card/40 font-medium hover:bg-primary/10 transition-colors">
-                  My story <ArrowDown className="w-3.5 h-3.5" />
-                </a>
-                <a href="#discord" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm bg-accent/90 text-accent-foreground font-medium hover:bg-accent transition-colors">
-                  Join Discord <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-                <a href="#spicy" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm bg-red-500/90 text-white font-medium hover:bg-red-500 transition-colors">
-                  Spicy corner 🌶️ <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-                </div>
-            </div>
-            <div className="flex items-center gap-3 pt-2 justify-center md:justify-start text-muted-foreground">
-              <span className="text-sm font-medium">find me on</span>
-              <a href="https://twitch.tv/" target="_blank" rel="noreferrer" className="grid place-items-center w-9 h-9 rounded-full bg-primary/15 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"><Twitch className="w-4 h-4" /></a>
-              <a href="https://twitter.com/" target="_blank" rel="noreferrer" className="grid place-items-center w-9 h-9 rounded-full bg-primary/15 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"><Twitter className="w-4 h-4" /></a>
-              <a href="https://www.youtube.com/@KittyCandyVT" target="_blank" rel="noreferrer" className="grid place-items-center w-9 h-9 rounded-full bg-primary/15 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"><Youtube className="w-4 h-4" /></a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-sm mt-6"
-          >
-            <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-primary/50 blur-3xl scale-110" aria-hidden="true" />
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="rounded-[2rem] overflow-hidden bg-black shadow-2xl shadow-primary/40 ring-1 ring-primary/30 rotate-2"
-            >
-              <Image src={CHAR_2} alt="Kitty in her maid outfit holding a parfait" className="aspect-[3/4] w-full" fittingType="fill" focalPointY={0.3} />
-            </motion.div>
-            <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-2xl bg-white shadow-lg text-sm font-bold text-primary flex items-center gap-1.5">
-              <Star className="w-4 h-4 fill-primary" /> treat?
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.a
-          href="#story"
-          aria-label="Scroll down"
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 grid place-items-center w-10 h-10 rounded-full bg-card/70 border border-primary/30 text-primary backdrop-blur shadow-lg"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown className="w-5 h-5" />
-        </motion.a>
-      </section>
-
-      {/* MARQUEE */}
-      <div className="relative z-10 py-3 bg-primary overflow-hidden">
-        <motion.div
-          className="flex gap-6 whitespace-nowrap font-display text-lg font-bold text-primary-foreground"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-        >
-          {Array.from({ length: 2 }).map((_, k) => (
-            <div key={k} className="flex gap-6 shrink-0">
-              {["cat ears", "♡", "pink everything", "♡", "cozy chaos", "♡", "becoming her", "♡", "your bestie", "♡"].map((w, i) => (
-                <span key={i} className="flex items-center gap-6">{w}</span>
-              ))}
-            </div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* ABOUT */}
-      <section id="story" className="relative z-10 py-12 px-4 bg-gradient-to-b from-primary/25 to-background">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <motion.div variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }} className="order-2 md:order-1 space-y-5">
-            <h2 className="font-heading text-4xl font-bold text-accent">the girl behind the ears</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              I'm Kitty — a VTuber who lives for pink, cats, and showing up as the softest, boldest version of myself every single day. I make
-              content that feels like a warm hug and a little bit of chaos rolled into one. No pretending, no shrinking — just me, becoming her, out loud.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Whether it's cozy streams, viral little clips, or brand partners I genuinely adore, everything I make is built on one belief:
-              <span className="text-primary font-semibold"> you can be soft and still take up the whole room.</span>
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {FACTS.map((f) => (
-                <span key={f} className="px-3 py-1.5 rounded-full bg-primary/15 text-primary text-sm font-medium">{f}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }}
-            className="order-1 md:order-2 relative mx-auto w-full max-w-xs"
-          >
-            <div className="rounded-[2rem] overflow-hidden bg-black shadow-2xl shadow-primary/30 ring-1 ring-primary/30">
-              <Image src={CHAR_1} alt="Kitty in her cyberpunk chair" className="aspect-[3/4] w-full" fittingType="fill" focalPointX={0.32} focalPointY={0.38} />
-            </div>
-            <div className="absolute -bottom-4 -left-4 px-4 py-2 rounded-2xl bg-white shadow-lg text-sm font-bold text-primary flex items-center gap-1.5">
-              <Heart className="w-4 h-4 fill-primary text-primary" /> my baby
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* WHAT I DO */}
-      <section className="relative z-10 py-12 px-4 bg-gradient-to-b from-primary/30 via-secondary/70 to-background">
-        <div className="max-w-5xl mx-auto">
-          <motion.div variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center justify-center gap-3 mb-8">
-            <span className="h-px w-10 bg-primary/40" />
-            <Heart className="w-5 h-5 fill-primary text-primary" />
-            <motion.h2 className="font-heading text-4xl font-bold text-center text-accent">
-              what this kitty can do
-            </motion.h2>
-            <Heart className="w-5 h-5 fill-primary text-primary" />
-            <span className="h-px w-10 bg-primary/40" />
-          </motion.div>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {VIBES.map((v, i) => (
-              <motion.div
-                key={v.title}
-                variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative bg-card rounded-3xl p-6 border border-border/60 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/20 transition-all overflow-hidden"
-              >
-                <div className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors" />
-                <div className="relative space-y-3">
-                  <span className="grid place-items-center w-12 h-12 rounded-2xl bg-primary/20">
-                    <v.icon className="w-6 h-6 text-primary" />
-                  </span>
-                  <h3 className="font-heading text-xl font-bold text-accent">{v.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{v.text}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TWITCH SPOTLIGHT */}
-      <TwitchSpotlight />
-
-      {/* SPICY SPOTLIGHT */}
-      <SpicySpotlight />
-
-      {/* FANSLY */}
-      <FanslySpotlight />
-
-      {/* LOVENSE PARTNERSHIP */}
-      <section className="relative z-10 py-12 px-4">
-        <motion.div
-          variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }}
-          className="max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-primary/40 via-secondary to-primary/25 p-8 sm:p-12 border border-primary/30 shadow-2xl shadow-primary/20 space-y-6"
-        >
-          <div className="flex items-center gap-3">
-            <span className="grid place-items-center w-12 h-12 rounded-2xl bg-primary text-primary-foreground">
-              <Gift className="w-6 h-6" />
-            </span>
-            <span className="px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm font-bold">50% off</span>
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-accent">my Lovense partnership 💕</h2>
-          <p className="text-muted-foreground max-w-xl leading-relaxed">
-            Treat yourself (and maybe me 👀). I've teamed up with Lovense so my besties get <span className="text-primary font-semibold">50% off</span> with my link — every order supports the kitty corner of the internet.
-          </p>
-          <a href="https://lovense.com/p/KittyCandy" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-bold text-lg shadow-lg shadow-primary/40 hover:scale-105 transition-transform">
-            Shop 50% off <ArrowRight className="w-5 h-5" />
-          </a>
-          <p className="text-xs text-muted-foreground/80">Affiliate link — I may earn a commission at no extra cost to you.</p>
-        </motion.div>
-      </section>
-
-      {/* DISCORD SERVER */}
-      <DiscordServer />
-
-      {/* MERCH STORE */}
-      <MerchStore />
-
-      {/* VTUBER COLLABS */}
-      <VtuberCollabs />
-
-      {/* COMMISSION SHEET */}
-      <CommissionSheet />
-
-      {/* CONTACT ME */}
-      <ContactMe />
-
-      {/* GALLERY */}
-      <section className="relative z-10 py-12 px-4 bg-gradient-to-b from-background via-primary/20 to-secondary/60">
-        <div className="max-w-5xl mx-auto">
-          <motion.div variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center justify-center gap-3 mb-8">
-            <span className="h-px w-10 bg-primary/40" />
-            <Sparkles className="w-5 h-5 text-primary" />
-            <motion.h2 className="font-heading text-4xl font-bold text-center text-accent">
-              a little lookbook
-            </motion.h2>
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="h-px w-10 bg-primary/40" />
-          </motion.div>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {[
-              { src: CHAR_1, cap: "cyber kitty", focalPointX: 0.32, focalPointY: 0.38, credit: "art by Gensox on VGen", creditUrl: "https://vgen.co/Gensox" },
-              { src: CHAR_2, cap: "wink", focalPointX: 0.5, focalPointY: 0.35, credit: "art by Frogguclouds on Twitter", creditUrl: "https://twitter.com/Frogguclouds" },
-              { src: CHAR_3, cap: "snuggle", fittingType: "fit", credit: "art by Minaxium on VGen", creditUrl: "https://vgen.co/Minaxium" },
-            ].map((g, i) => (
-              <motion.div
-                key={g.cap}
-                variants={reveal} initial="hidden" whileInView="show" viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-[1.75rem] overflow-hidden bg-black shadow-xl shadow-primary/20 ring-1 ring-primary/20 hover:ring-primary/50 hover:-translate-y-1 transition-all"
-              >
-                <Image src={g.src} alt={g.cap} className="aspect-[3/4] w-full group-hover:scale-110 transition-transform duration-500" fittingType={g.fittingType || "fill"} focalPointX={g.focalPointX ?? 0.5} focalPointY={g.focalPointY ?? 0.35} />
-                <p className="text-center py-3 text-sm font-medium text-primary">{g.cap}</p>
-                {g.credit && (
-                  <p className="text-center pb-3 px-2 -mt-1 text-[11px] text-muted-foreground">
-                    {g.creditUrl ? (
-                      <a href={g.creditUrl} target="_blank" rel="noreferrer" className="underline hover:text-primary">{g.credit}</a>
-                    ) : g.credit}
-                  </p>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-     
-  
-
-      <BackToTop />
-    </div>
-  );
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KittyCandyVT</title>
+<style>
+:root{
+  --bg:#fff7fb; --card:#fff; --pink:#f472b6; --pink2:#ec4899;
+  --accent:#a855f7; --lav:#f3e8ff; --ink:#3d1d37; --muted:#7f6379;
+  --line:rgba(236,72,153,.16); --shadow:0 20px 55px rgba(190,24,93,.13);
 }
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none} img{display:block;max-width:100%}
+.kc{position:relative;overflow:hidden}.container{width:min(1100px,calc(100% - 32px));margin:auto}.section{position:relative;padding:82px 0}
+.decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.float{position:absolute;animation:float 7s ease-in-out infinite;color:rgba(244,114,182,.32);font-size:20px}.float:nth-child(2n){color:rgba(168,85,247,.28);animation-duration:9s}.float:nth-child(3n){animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-24px) rotate(12deg);opacity:.8}}
+.hero{position:relative;z-index:1;min-height:88vh;display:flex;align-items:center;background:linear-gradient(to bottom,rgba(244,114,182,.30),rgba(253,242,248,.88) 58%,var(--bg));padding:50px 0}
+.hero-grid{display:grid;grid-template-columns:1fr .85fr;gap:60px;align-items:center}.hero-copy{animation:up .75s ease both}.logo{width:230px}.badges,.actions,.subactions,.socials,.facts{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.live,.pill,.subpill{border-radius:999px;font-weight:800;font-size:14px;padding:9px 14px}.live{background:#ef4444;color:#fff;box-shadow:0 10px 25px rgba(239,68,68,.25)}.pill{background:rgba(244,114,182,.14);color:var(--pink2)}.hero h1{font-size:clamp(58px,8vw,92px);line-height:.9;letter-spacing:-.07em;margin:20px 0;background:linear-gradient(90deg,var(--pink2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:18px;line-height:1.75;color:var(--muted);max-width:620px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:999px;font-weight:850;border:1px solid var(--line);transition:.2s;cursor:pointer}.btn:hover{transform:translateY(-2px)}.primary{background:var(--pink2);color:#fff;box-shadow:0 14px 32px rgba(236,72,153,.25)}.soft{background:rgba(255,255,255,.75);color:var(--pink2)}.subpill{padding:9px 13px;background:rgba(255,255,255,.55);border:1px solid var(--line);color:var(--muted)}.subpill.hot{background:#ef4444;color:#fff;border-color:#ef4444}.social-label{font-size:13px;font-weight:800;color:var(--muted)}.social{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(244,114,182,.13);color:var(--pink2);font-weight:900}
+.hero-art{position:relative;max-width:410px;margin:auto;animation:up .9s ease both}.hero-art:before{content:"";position:absolute;inset:20px -10px -10px;background:var(--pink);filter:blur(60px);opacity:.35;border-radius:50%;z-index:-1}.hero-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 30%;border-radius:36px;box-shadow:var(--shadow);border:1px solid rgba(244,114,182,.25);transform:rotate(2deg);animation:bob 5s ease-in-out infinite}.treat{position:absolute;right:-12px;bottom:-12px;background:#fff;padding:12px 16px;border-radius:18px;color:var(--pink2);font-weight:900;box-shadow:var(--shadow)}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}@keyframes bob{50%{transform:translateY(-12px) rotate(2deg)}}
+.marquee{position:relative;z-index:2;overflow:hidden;background:var(--pink2);color:#fff;padding:15px 0;font-weight:900}.track{display:flex;width:max-content;gap:30px;animation:marquee 20s linear infinite}.track span{white-space:nowrap;font-size:17px}@keyframes marquee{to{transform:translateX(-50%)}}
+.section-title{text-align:center;margin-bottom:42px}.eyebrow{color:var(--pink2);font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.section h2{font-size:clamp(38px,5vw,60px);letter-spacing:-.055em;margin:12px 0}.gradient-text{background:linear-gradient(90deg,var(--pink2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.story{background:linear-gradient(to bottom,rgba(244,114,182,.17),var(--bg));z-index:1}.story-grid{display:grid;grid-template-columns:1fr .75fr;gap:70px;align-items:center}.story p{font-size:17px;line-height:1.85;color:var(--muted)}.story strong{color:var(--pink2)}.portrait{position:relative}.portrait img{aspect-ratio:3/4;width:100%;object-fit:cover;object-position:32% 38%;border-radius:34px;box-shadow:var(--shadow)}.tag{position:absolute;left:-16px;bottom:-16px;background:#fff;color:var(--pink2);padding:12px 16px;border-radius:18px;font-weight:900;box-shadow:var(--shadow)}.fact{padding:9px 13px;border-radius:999px;background:rgba(244,114,182,.12);color:var(--pink2);font-size:13px;font-weight:800}
+.cards{z-index:1;background:linear-gradient(to bottom,rgba(244,114,182,.18),rgba(243,232,255,.65),var(--bg))}.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{position:relative;background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 8px 24px rgba(100,30,80,.04);transition:.25s;overflow:hidden}.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.icon{width:52px;height:52px;display:grid;place-items:center;border-radius:18px;background:rgba(244,114,182,.14);font-size:25px}.card h3{font-size:22px;margin:18px 0 8px}.card p{margin:0;color:var(--muted);line-height:1.7}
+.spot-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.spot{min-height:330px;padding:38px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:34px;box-shadow:var(--shadow);overflow:hidden;position:relative;color:#fff}.spot:before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(35,8,36,.84),rgba(35,8,36,.08))}.spot>*{position:relative}.spot.twitch{background:radial-gradient(circle at 80% 10%,#9b7cff,transparent 38%),linear-gradient(135deg,#33205f,#5f3fa8)}.spot.spicy{background:radial-gradient(circle at 80% 10%,#ff7ab8,transparent 38%),linear-gradient(135deg,#6b164d,#b3226d)}.spot h3{font-size:40px;margin:8px 0}.spot p{color:#f7eaf3;line-height:1.7}
+.partner{z-index:1}.partner-box{background:linear-gradient(135deg,rgba(244,114,182,.28),rgba(243,232,255,.9),rgba(244,114,182,.18));border:1px solid var(--line);padding:50px;border-radius:40px;box-shadow:var(--shadow)}.partner-box h2{text-align:left;max-width:700px}.partner-box p{color:var(--muted);max-width:700px;line-height:1.8}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.linkcard{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 8px 20px rgba(100,30,80,.04)}.linkcard small{color:var(--muted);font-weight:800}.linkcard strong{display:block;font-size:22px;margin-top:12px}.commission{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}.price-list{display:grid;gap:10px}.row{background:#fff;border:1px solid var(--line);padding:17px 20px;border-radius:18px;display:flex;justify-content:space-between;color:var(--muted)}.row b{color:var(--pink2)}
+.gallery{z-index:1;background:linear-gradient(to bottom,var(--bg),rgba(244,114,182,.16),rgba(243,232,255,.5))}.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gallery-card{overflow:hidden;border-radius:28px;background:#fff;box-shadow:var(--shadow);border:1px solid var(--line)}.gallery-card img{width:100%;aspect-ratio:3/4;object-fit:cover}.gallery-card:nth-child(1) img{object-position:32% 38%}.gallery-card:nth-child(2) img{object-position:center 35%}.caption{padding:13px;text-align:center;font-weight:850;color:var(--pink2)}.credit{text-align:center;color:var(--muted);font-size:11px;padding:0 10px 14px}.contact{text-align:center}.contact-box{padding:58px 28px;border-radius:40px;background:linear-gradient(135deg,rgba(244,114,182,.18),rgba(255,255,255,.9));border:1px solid var(--line);box-shadow:var(--shadow)}.contact-box p{color:var(--muted);line-height:1.8;max-width:620px;margin:16px auto 28px}.footer{padding:38px 0;text-align:center;color:var(--muted);font-size:13px}.top{position:fixed;right:20px;bottom:20px;width:48px;height:48px;border:0;border-radius:50%;background:var(--pink2);color:#fff;font-size:20px;box-shadow:var(--shadow);cursor:pointer;opacity:0;transform:translateY(15px);transition:.25s;z-index:20}.top.show{opacity:1;transform:none}
+@media(max-width:800px){.hero-grid,.story-grid,.commission{grid-template-columns:1fr;gap:40px}.hero{text-align:center}.logo{margin:auto}.badges,.actions,.subactions,.socials,.facts{justify-content:center}.hero-art{max-width:330px}.grid4,.spot-grid,.gallery-grid{grid-template-columns:1fr}.links{grid-template-columns:1fr}.section{padding:64px 0}.partner-box{padding:34px 24px}.partner-box h2{font-size:42px}.hero h1{font-size:60px}}
+</style>
+</head>
+<body>
+<div class="kc">
+<div class="decor" id="decor"></div>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <img class="logo" src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/7bdefdc64_generated_b38be5b8.png" alt="KittyCandyVT logo">
+      <div class="badges"><span class="live">● LIVE</span><span class="pill">✦ VTuber · cozy chaos</span></div>
+      <h1>Hi, I'm Kitty</h1>
+      <p class="lead">Your new favorite cat-eared bestie — soft pastels, loud confidence, and a whole lot of pink. Welcome to the coziest corner of the internet. 💕</p>
+      <div class="actions"><a class="btn primary" href="#commissions">Commission me →</a><a class="btn soft" href="#contact">Contact →</a></div>
+      <div class="subactions"><a class="subpill" href="#story">My story ↓</a><a class="subpill" href="https://discord.gg/DhpPFTe2Xq" target="_blank">Join Discord →</a><a class="subpill hot" href="https://fansly.com/KittyCandyVT" target="_blank">Spicy corner 🌶️ →</a></div>
+      <div class="socials" style="margin-top:14px"><span class="social-label">find me on</span><a class="social" href="https://twitch.tv/KittyCandyVT" target="_blank">T</a><a class="social" href="https://twitter.com/KittyCandy_VT" target="_blank">X</a><a class="social" href="https://www.youtube.com/@KittyCandyVT" target="_blank">▶</a></div>
+    </div>
+    <div class="hero-art"><img class="hero-img" src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/394971f55_VI_VI_comm.jpg" alt="Kitty"><div class="treat">★ treat?</div></div>
+  </div>
+</section>
+
+<div class="marquee"><div class="track">
+  <span>cat ears ♡ pink everything ♡ cozy chaos ♡ becoming her ♡ your bestie ♡</span>
+  <span>cat ears ♡ pink everything ♡ cozy chaos ♡ becoming her ♡ your bestie ♡</span>
+  <span>cat ears ♡ pink everything ♡ cozy chaos ♡ becoming her ♡ your bestie ♡</span>
+</div></div>
+
+<section class="section story" id="story"><div class="container story-grid">
+  <div><div class="eyebrow">♡ MY STORY</div><h2 class="gradient-text">the girl behind the ears</h2>
+  <p>I'm Kitty — a VTuber who lives for pink, cats, and showing up as the softest, boldest version of myself every single day. I make content that feels like a warm hug and a little bit of chaos rolled into one.</p>
+  <p>Whether it's cozy streams, viral little clips, or brand partners I genuinely adore, everything I make is built on one belief: <strong>you can be soft and still take up the whole room.</strong></p>
+  <div class="facts"><span class="fact">cat-ear energy</span><span class="fact">pink everything</span><span class="fact">cozy gamer</span><span class="fact">soft + bold</span><span class="fact">always becoming her</span></div></div>
+  <div class="portrait"><img src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/f64393353_download.jpeg" alt="Kitty"><div class="tag">♥ my baby</div></div>
+</div></section>
+
+<section class="section cards"><div class="container"><div class="section-title"><div class="eyebrow">✦ WHAT I DO</div><h2>what this <span class="gradient-text">kitty can do</span></h2></div>
+<div class="grid4">
+  <div class="card"><div class="icon">📷</div><h3>Content Creation</h3><p>Short-form that hits, long-form that heals — every clip a little glow-up.</p></div>
+  <div class="card"><div class="icon">🎮</div><h3>Cozy Streams</h3><p>Low-stakes games, high-stakes vibes. Pull up a cushion and stay a while.</p></div>
+  <div class="card"><div class="icon">♥</div><h3>Brand Collabs</h3><p>Only partners I actually love. Confident, real, and never begging.</p></div>
+  <div class="card"><div class="icon">🐱</div><h3>The Community</h3><p>A soft corner of the internet where you can become her too.</p></div>
+</div></div></section>
+
+<section class="section"><div class="container"><div class="section-title"><div class="eyebrow">🎀 PICK YOUR POISON</div><h2>two sides of <span class="gradient-text">Kitty.</span></h2></div>
+<div class="spot-grid">
+  <div class="spot twitch"><div class="eyebrow" style="color:#f0e7ff">TWITCH</div><h3>Cozy Chaos 🎮</h3><p>Games, chatting, laughs, cute moments and the occasional menace behavior.</p><div><a class="btn primary" href="https://twitch.tv/KittyCandyVT" target="_blank">Watch Twitch →</a></div></div>
+  <div class="spot spicy"><div class="eyebrow" style="color:#ffe2f1">18+ / ADULT</div><h3>Spicy Kitty 🌶️</h3><p>The sweeter side of Kitty is cute. The other side is considerably more dangerous.</p><div><a class="btn primary" href="https://fansly.com/KittyCandyVT" target="_blank">Visit Fansly →</a></div></div>
+</div></div></section>
+
+<section class="section partner"><div class="container"><div class="partner-box"><div class="eyebrow">🎁 50% OFF</div><h2>my Lovense partnership 💕</h2><p>Treat yourself (and maybe me 👀). I've teamed up with Lovense so my besties get <b style="color:var(--pink2)">50% off</b> with my link.</p><a class="btn primary" href="https://lovense.com/p/KittyCandy" target="_blank">Shop 50% off →</a><p style="font-size:11px">Affiliate link — I may earn a commission at no extra cost to you.</p></div></div></section>
+
+<section class="section"><div class="container"><div class="section-title"><div class="eyebrow">💕 FIND ME</div><h2>wherever you like your <span class="gradient-text">Kitty.</span></h2></div>
+<div class="links">
+<a class="linkcard" href="https://discord.gg/DhpPFTe2Xq" target="_blank"><small>COME HANG OUT</small><strong>💬 Discord</strong></a>
+<a class="linkcard" href="https://acggoods.com/store/kittycandycollectibles" target="_blank"><small>TAKE KITTY HOME</small><strong>🎀 Merch & Collectibles</strong></a>
+<a class="linkcard" href="https://twitch.tv/KittyCandyVT" target="_blank"><small>LIVE & CHAOTIC</small><strong>🎮 Twitch</strong></a>
+</div></div></section>
+
+<section class="section" id="commissions"><div class="container"><div class="section-title"><div class="eyebrow">💌 COMMISSIONS</div><h2>let's make something <span class="gradient-text">cute.</span></h2></div>
+<div class="commission"><div class="card"><div class="icon">✦</div><h3>Let's create together.</h3><p>Reach out with your idea and we'll figure out the best way to bring it to life.</p><br><a class="btn primary" href="#contact">Contact Kitty →</a></div>
+<div class="price-list"><div class="row"><span>🎨 Custom artwork</span><b>Ask</b></div><div class="row"><span>🎥 Sponsored content</span><b>Ask</b></div><div class="row"><span>🐱 VTuber collaborations</span><b>Ask</b></div><div class="row"><span>♥ Brand partnerships</span><b>Ask</b></div><div class="row"><span>✨ Custom projects</span><b>Ask</b></div></div></div></div></section>
+
+<section class="section gallery"><div class="container"><div class="section-title"><div class="eyebrow">✦ THE LOOKBOOK</div><h2>a little <span class="gradient-text">lookbook</span></h2></div>
+<div class="gallery-grid">
+<div class="gallery-card"><img src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/f64393353_download.jpeg" alt="cyber kitty"><div class="caption">cyber kitty</div><div class="credit"><a href="https://vgen.co/Gensox" target="_blank">art by Gensox on VGen</a></div></div>
+<div class="gallery-card"><img src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/394971f55_VI_VI_comm.jpg" alt="wink"><div class="caption">wink</div><div class="credit"><a href="https://twitter.com/Frogguclouds" target="_blank">art by Frogguclouds on Twitter</a></div></div>
+<div class="gallery-card"><img src="https://media.base44.com/images/public/6a6cfd1599dc4a8c276eae04/97ea01347_IMG_1166.jpeg" alt="snuggle"><div class="caption">snuggle</div><div class="credit"><a href="https://vgen.co/Minaxium" target="_blank">art by Minaxium on VGen</a></div></div>
+</div></div></section>
+
+<section class="section contact" id="contact"><div class="container"><div class="contact-box"><div class="eyebrow">💌 SAY HI</div><h2>come hang out with <span class="gradient-text">Kitty.</span></h2><p>Whether you want to collaborate, talk business, join the community, send memes or simply lurk from the shadows — there's a place for you here.</p><div class="actions" style="justify-content:center"><a class="btn primary" href="https://discord.gg/DhpPFTe2Xq" target="_blank">💬 Join Discord</a><a class="btn soft" href="https://twitch.tv/KittyCandyVT" target="_blank">🎮 Twitch</a><a class="btn" style="background:#ef4444;color:#fff" href="https://fansly.com/KittyCandyVT" target="_blank">🌶️ Fansly 18+</a></div></div></div></section>
+
+<footer class="footer">Made with 💕 for Kitty — keep becoming her.<br><br>© 2026 KittyCandyVT · Sweet, soft & slightly chaotic.</footer>
+<button class="top" id="top">↑</button>
+</div>
+<script>
+const d=document.getElementById('decor');
+const icons=['♡','✦','♥','☆'];
+for(let i=0;i<28;i++){let s=document.createElement('span');s.className='float';s.textContent=icons[i%4];s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=(-Math.random()*8)+'s';s.style.fontSize=(10+Math.random()*18)+'px';d.appendChild(s)}
+const top=document.getElementById('top');addEventListener('scroll',()=>top.classList.toggle('show',scrollY>500));top.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+</script>
+</body></html>
